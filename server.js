@@ -1,24 +1,11 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
 const db = require("./app/models");
-
+db.sequelize.sync();
 const app = express();
 
-db.sequelize.sync();
-
-/*var corsOptions = {
-    origin: "http://localhost:8081"
-};
-app.use(cors(corsOptions));*/
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.get("/", (req, res) => {
-    res.json({ message: "Welcome to Guan Landing API application." });
-});
-
+require("./app/config/cors.config")(app);
+require("./app/config/admin.config")(app, db);
+require("./app/config/bodyParser.config")(app);
 require("./app/routes/customer.routes")(app);
 
 const PORT = process.env.PORT || 8000;
