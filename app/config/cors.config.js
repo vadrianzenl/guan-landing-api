@@ -1,8 +1,8 @@
 const cors = require("cors");
 
 module.exports = app => {
-    /*var corsOptions = {
-        origin: "http://localhost:8081"
+    const corsOptions = {
+        origin: ["http://localhost:3000", "http://guan.pe"]
     };
-    app.use(cors(corsOptions));*/
+    app.use(cors(corsOptions));
 };

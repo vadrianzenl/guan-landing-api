@@ -1,5 +1,5 @@
 const db = require("../models");
-const Customer = db.customer;
+const Business = db.business;
 
 exports.create = (req, res) => {
     if (!req.body.email) {
@@ -9,19 +9,20 @@ exports.create = (req, res) => {
         return;
     }
 
-    const customer = {
+    const business = {
         name: req.body.name,
-        email: req.body.email
+        email: req.body.email,
+        message: req.body.message
     };
 
-    Customer.create(customer)
+    Business.create(business)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating the Customer."
+                    err.message || "Some error occurred while creating the Business."
             });
         });
 };
