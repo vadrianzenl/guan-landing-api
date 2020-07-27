@@ -1,0 +1,7 @@
+---
+applications:
+  - name: guan-landing-api
+    command: node server.js
+    memory: 128MB
+    instances: 1
+    stack: cflinuxfs3
